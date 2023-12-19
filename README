@@ -1,0 +1,19 @@
+mao's simple vim lua
+====================
+
+my awesome (neo)vim
+written in lua
+
+features
+--------
+* shrimple
+* suckless
+* swag
+
+anti-features
+-------------
+* no plugins
+* no external themes
+* barebones hl, cmp
+* not pretty
+
