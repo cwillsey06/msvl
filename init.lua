@@ -1,18 +1,24 @@
 --2023.12.19 @ 23:36
 local indent	= 3
 local e24bpc	= true
-local scheme	= 'habamax'
-local leader	= 'space'
+local schemes	= { 'habamax', 'slate', 'quiet', 'shine' }
+local scheme_1	= schemes[1]
+local leader	= ';'
 
 --#cmd
 local cmd = vim.cmd
-cmd ('colorscheme '..scheme)
+
 cmd 'filetype plugin indent on'
-cmd 'aunmenu PopUp.How-to\\ disable\\ mouse'
-cmd 'aunmenu PopUp.-1-'
+pcall(function()
+	cmd 'aunmenu PopUp.How-to\\ disable\\ mouse'
+	cmd 'aunmenu PopUp.-1-'
+end)
 
 --#opt
 function set(key, value) vim.opt[key] = value end
+function set_scheme(k) cmd ('colorscheme '..k) end
+set_scheme (scheme_1)
+
 if os.getenv('TERM_PROGRAM') ~= 'Apple_Terminal' then
 	set ('termguicolors', e24bpc)
 end
@@ -22,13 +28,13 @@ set ('signcolumn',		'yes')
 set ('splitbelow',		true)
 
 set ('encoding',			'utf-8')
-set ('syntax',				'enable')
+--set ('syntax',			'enable')
 set ('matchpairs',		{'\':\'', '\":\"', '(:)', '{:}', '[:]', '<:>'})
 
 set ('ttyfast',			true)
 set ('updatetime',		300)
 set ('ttimeout',			true)
-set ('timeoutlen',		10)
+set ('ttimeoutlen',		50)
 
 set ('incsearch',			true)
 set ('hlsearch',			true)
@@ -82,4 +88,32 @@ map ('n',	'<leader>dw',	':close<CR>',				'close')
 
 --misc
 map ('n',	'<leader>h',	':nohl<CR>',				'reset hl')
+
+local last_scheme_index = 1
+function cycle_scheme()
+	last_scheme_index = (last_scheme_index + 1) % #schemes
+	last_scheme_index = last_scheme_index ~=  0 and last_scheme_index or 3
+	set_scheme (schemes[last_scheme_index])
+	print(last_scheme_index, vim.g.colors_name)
+end
+function swap_scheme()
+	local this_scheme = vim.g.colors_name or 'default'
+	set_scheme (this_scheme == 'default' and schemes[last_scheme_index] or 'default')
+	print (vim.g.colors_name)
+end
+function set_scheme_index(i)
+	if i>#schemes then return '<nop>' end
+	return function()
+		set_scheme (schemes[i])
+		print (tostring(i), vim.g.colors_name)
+	end
+end
+
+map ('n',	'<leader>td',	swap_scheme,				'swap last & default schemes')
+map ('n',	'<leader>tc',	cycle_scheme,				'cycle predefined schemes')
+
+for i = 1, 10 do
+	local is = tostring(i)
+	map ('n',	'<leader>t'..is,	set_scheme_index(i),	'scheme index '..is)
+end
 
