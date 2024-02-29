@@ -117,3 +117,14 @@ for i = 1, 10 do
 	map ('n',	'<leader>t'..is,	set_scheme_index(i),	'scheme index '..is)
 end
 
+--paq
+require 'paq' {
+	'savq/paq-nvim',
+	'neovim/nvim-lspconfig'
+}
+--lsp
+--@TODO: idk how but add to paq init
+pcall(function()
+	require'lspconfig'.luau_lsp.setup{}
+end)
+
