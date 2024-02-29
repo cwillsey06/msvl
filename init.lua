@@ -1,7 +1,7 @@
 --2023.12.19 @ 23:36
 local indent	= 3
 local e24bpc	= true
-local schemes	= { 'habamax', 'slate', 'quiet', 'shine' }
+local schemes	= { 'shine', 'quiet', 'slate', 'habamax' }
 local scheme_1	= schemes[1]
 local leader	= ';'
 
