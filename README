@@ -12,9 +12,7 @@ features
 
 anti-features
 -------------
-* ~~no plugins~~
-	* `lsp` branch; paq is now required  
-		https://github.com/savq/paq-nvim  
+* no plugins
 * no external themes
 * barebones hl, cmp
 * not pretty
