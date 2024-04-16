@@ -1,19 +1,23 @@
 mao's simple vim lua
 ====================
+**branch extra;**
+plugins and stuff
+your average wael
+wouldn't liek, :O
 
 my awesome (neo)vim
-written in lua
+written in lua :333
 
-features
---------
+WAEL features
+-------------
 * shrimple
 * suckless
 * swag
 
-anti-features
--------------
-* no plugins
-* no external themes
-* barebones hl, cmp
-* not pretty
+MAO features
+------------
+* YES plugins
+* YES external themes
+* SOME hl, cmp
+* IDK pretty
 
