@@ -41,7 +41,8 @@ require('lazy').setup(
 		'folke/neodev.nvim',
 		--### colorscheme
 		{ 'morhetz/gruvbox' },
-		{ 'tiagovla/scope.nvim' }
+		{ 'tiagovla/scope.nvim' },
+		{ 'nvim-treesitter/nvim-treesitter' }
 	},
 	--## opts
 	{ show = false }
